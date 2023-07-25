@@ -1,0 +1,41 @@
+<div class="product-form-wrapper">
+  <div class="product-form">
+    <form action="/products" method="POST">
+      <br /><label>Add Product:</label><br />
+      <label
+        >product_name:
+        <input type="text" id="product_name" name="product_name" required />
+      </label>
+      <label
+        >product_description:
+        <input
+          type="text"
+          id="product_description"
+          name="product_description"
+          required
+        />
+      </label>
+      <label
+        >product_price:
+        <input
+          type="number"
+          step="0.01"
+          id="product_price"
+          name="product_price"
+          value="0.01"
+          required
+        />
+      </label>
+      <label
+        >product_image:
+        <input type="text" id="product_image" name="product_image" />
+      </label>
+      <label
+        >category_id:
+        <input type="number" id="category_id" name="category_id" required />
+      </label>
+      <br />
+      <button type="submit">POST</button>
+    </form>
+  </div>
+</div>
