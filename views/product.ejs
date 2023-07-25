@@ -1,0 +1,33 @@
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/nav.ejs') %> <% if (aProduct.length > 0) { %> <% let
+    product = aProduct[0] %>
+    <div class="products-content">
+      <a href="javascript:history.back()"
+        ><div class="product-card">
+          <div class="product-title">
+            <h2>Title: <%= product.product_name %></h2>
+            Product ID: <%= product.product_id %>
+          </div>
+
+          <div class="product-thumbnail">
+            <img src="<%= product.product_image %>" alt="product_image" />
+          </div>
+          <div class="product-info">
+            <p class="product-description">
+              <b>Description:</b><br />
+              <%= product.product_description %>
+            </p>
+            <p class="product-price">
+              <b>Price: $</b><%= product.product_price %>
+            </p>
+            <p><b>Category ID:</b> <%= product.category_id %></p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% } %>
+  </body>
+  <%- include('./partials/foot.ejs') %>
+</html>
