@@ -4,6 +4,7 @@ const {
   getProducts,
   getProductById,
   addProduct,
+  deleteProduct,
 } = require("../services/products.dal");
 
 router.get("/", async (req, res) => {
@@ -68,6 +69,12 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/:id/delete", async (req, res) => {
+  if (DEBUG) console.log("product.Delete : " + req.params.id);
+  let aProduct = await getProductById(req.params.id);
+  res.render("productDelete.ejs", { aProduct });
+});
+
 router.post("/", async (req, res) => {
   if (DEBUG) console.log("products.POST");
   try {
@@ -95,4 +102,18 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  if (DEBUG) console.log("products.DELETE: product_id=" + req.params.id);
+  try {
+    await deleteProduct(req.params.id);
+    res.redirect("/products/");
+  } catch (err) {
+    if (DEBUG)
+      console.log(
+        `There was an error deleting record, product_id=${req.params.id}: ${err}`
+      );
+    //logging here
+    res.render("503");
+  }
+});
 module.exports = router;

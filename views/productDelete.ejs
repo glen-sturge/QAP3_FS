@@ -1,0 +1,25 @@
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/nav.ejs') %> <% let product = aProduct[0]; %>
+    <div class="products-content">
+      <div class="product-delete-card">
+        <%-include('./partials/productCard.ejs', { product: product })%>
+        <div class="product-delete-confirm">
+          <form
+            action="/products/<%= product.product_id %>?_method=DELETE"
+            method="POST"
+          >
+            <label>Are you sure you want to delete this product?<br /> </label>
+            <br />
+            <button type="submit" class="delete-button">DELETE</button>
+          </form>
+          <a href="javascript:history.back()"
+            ><button class="cancel-button">CANCEL</button></a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+  <%- include('./partials/foot.ejs') %>
+</html>
