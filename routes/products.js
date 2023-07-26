@@ -1,3 +1,4 @@
+const Logger = require("../logger");
 const express = require("express");
 const router = express.Router();
 const {
@@ -6,6 +7,9 @@ const {
   addProduct,
   deleteProduct,
 } = require("../services/products.dal");
+
+const lg = new Logger();
+lg.listen();
 
 router.get("/", async (req, res) => {
   //   const products = [
@@ -40,8 +44,20 @@ router.get("/", async (req, res) => {
   try {
     let products = await getProducts(); //from postgresql
     res.render("products", { products });
-  } catch {
+    lg.emit(
+      "log",
+      "products.GET('/')",
+      "INFO",
+      `${res.statusCode}: (client@${req.socket.remoteAddress}) Products succesfully recieved.`
+    );
+  } catch (error) {
     res.render("503");
+    lg.emit(
+      "log",
+      "products.GET('/')",
+      "ERROR",
+      `${res.statusCode}: Problem retrieving product information: ${error}`
+    );
   }
 });
 
@@ -87,7 +103,6 @@ router.post("/", async (req, res) => {
     } = req.body;
 
     if (DEBUG) console.log("Data extracted from request body");
-    if (DEBUG) console.log(product_name);
     await addProduct(
       product_name,
       product_description,
