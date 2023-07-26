@@ -71,8 +71,24 @@ const addProduct = (
   });
 };
 
+const deleteProduct = (product_id) => {
+  if (DEBUG) console.log("products.dal.deleteProduct()");
+  return new Promise((resolve, reject) => {
+    const sql = "DELETE FROM product WHERE product_id = $1;";
+    dal.query(sql, [product_id], (err, result) => {
+      if (err) {
+        if (DEBUG) console.log(err);
+        reject(err);
+      } else {
+        resolve(result.rows);
+      }
+    });
+  });
+};
+
 module.exports = {
   getProducts,
   getProductById,
   addProduct,
+  deleteProduct,
 };
