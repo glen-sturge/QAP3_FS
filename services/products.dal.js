@@ -106,6 +106,29 @@ const putProduct = (
   });
 };
 
+const patchProduct = (product_id, patchData) => {
+  if (DEBUG) console.log("products.dal.patchProduct()");
+  return new Promise((resolve, reject) => {
+    const keys = Object.keys(patchData);
+    let update = keys.map((key, index) => `${key}=$${index + 1}`);
+    const sqlMod = update.join(", ");
+    const sql = `UPDATE product SET ${sqlMod} WHERE product_id =$${
+      keys.length + 1
+    }`;
+    const values = Object.values(patchData);
+
+    dal.query(sql, [...values, product_id], (err, result) => {
+      if (err) {
+        //logging here
+        if (DEBUG) console.log("Error patching product data: " + err);
+        reject(err);
+      } else {
+        resolve(result.rows);
+      }
+    });
+  });
+};
+
 const deleteProduct = (product_id) => {
   if (DEBUG) console.log("products.dal.deleteProduct()");
   return new Promise((resolve, reject) => {
@@ -127,4 +150,5 @@ module.exports = {
   addProduct,
   deleteProduct,
   putProduct,
+  patchProduct,
 };

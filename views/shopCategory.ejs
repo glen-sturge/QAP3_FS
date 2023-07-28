@@ -1,0 +1,33 @@
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/nav.ejs') %> <%-
+    include('./partials/addProduct.ejs') %>
+    <div class="category-content">
+      <% if (categories.length > 0) { %> <% categories.forEach(category => { %>
+      >
+      <div class="category-card">
+        <div class="category-title">
+          <h2>Title: <%= category.category_name %></h2>
+          Category ID: <%= category.category_id %>
+        </div>
+
+        <div class="category-thumbnail">
+          <img src="<%= category.category_image %>" alt="category_image" />
+        </div>
+        <div class="category-info">
+          <p class="category-description">
+            <b>Description:</b><br />
+            <%= category.category_description %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }); %> <% } %> <%- include('./partials/foot.ejs') %>
+  </body>
+  <script>
+    const urlGo = (url) => {
+      window.location.href = url;
+    };
+  </script>
+</html>

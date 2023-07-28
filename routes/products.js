@@ -7,6 +7,7 @@ const {
   addProduct,
   deleteProduct,
   putProduct,
+  patchProduct,
 } = require("../services/products.dal");
 
 const lg = new Logger();
@@ -57,7 +58,7 @@ router.get("/", async (req, res) => {
       "log",
       "products.GET('/')",
       "ERROR",
-      `${res.statusCode}: Problem retrieving product information: ${error}`
+      `${res.statusCode}: (client@${req.socket.remoteAddress}) Problem retrieving product information: ${error}`
     );
   }
 });
@@ -93,9 +94,15 @@ router.get("/:id/delete", async (req, res) => {
 });
 
 router.get("/:id/replace", async (req, res) => {
-  if (DEBUG) console.log("product.REPLACE : " + req.params.id);
+  if (DEBUG) console.log("product.REPLACE : id=" + req.params.id);
   let aProduct = await getProductById(req.params.id);
   res.render("putProduct.ejs", { product: aProduct[0] });
+});
+
+router.get("/:id/edit", async (req, res) => {
+  if (DEBUG) console.log("product.EDIT: id=" + req.params.id);
+  let aProduct = await getProductById(req.params.id);
+  res.render("patchProduct.ejs", { product: aProduct[0] });
 });
 
 router.post("/", async (req, res) => {
@@ -148,6 +155,38 @@ router.put("/:id", async (req, res) => {
       console.log(
         `There was an error replacing product data, product_id=${req.params.id}:\n${error} `
       );
+  }
+});
+
+router.patch("/:id", async (req, res) => {
+  if (DEBUG) console.log("product.PATCH: product_id=" + req.params.id);
+  console.log("Request Body:", req.body);
+  try {
+    const {
+      product_name,
+      product_description,
+      product_price,
+      product_image,
+      category_id,
+    } = req.body;
+
+    const patchData = {};
+    if (product_name !== undefined) patchData.product_name = product_name;
+    if (product_description !== undefined)
+      patchData.product_description = product_description;
+    if (product_price !== undefined) patchData.product_price = product_price;
+    if (product_image !== undefined) patchData.product_image = product_image;
+    if (category_id !== undefined) patchData.category_id = category_id;
+
+    await patchProduct(req.params.id, patchData);
+    res.redirect("/products/");
+  } catch (error) {
+    if (DEBUG)
+      console.log(
+        `There was an error patching product data, product_id=${req.params.id}:\n${error} `
+      );
+    //logging here
+    res.render("503");
   }
 });
 
