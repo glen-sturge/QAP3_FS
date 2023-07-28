@@ -1,0 +1,47 @@
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/nav.ejs') %> <%-
+    include('./partials/addProduct.ejs') %>
+    <div class="products-content">
+      <% if (products.length > 0) { %> <% products.forEach(product => { %> >
+      <div class="product-card">
+        <div class="product-title">
+          <h2>Title: <%= product.product_name %></h2>
+          Product ID: <%= product.product_id %>
+        </div>
+
+        <div class="product-thumbnail">
+          <img src="<%= product.product_image %>" alt="product_image" />
+        </div>
+        <div class="product-info">
+          <p class="product-description">
+            <b>Description:</b><br />
+            <%= product.product_description %>
+          </p>
+          <p class="product-price">
+            <b>Price: $</b><%= product.product_price %>
+          </p>
+          <p><b>Category ID:</b> <%= product.category_id %></p>
+          <div class="product-options-wrapper">
+            <div class="product-options">
+              <button
+                class="buy-button"
+                onclick="urlGo('/products/<%= product.product_id%>/delete')"
+              >
+                Purchase
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }); %> <% } %>
+    </div>
+    <%- include('./partials/foot.ejs') %>
+  </body>
+  <!-- <script>
+    const urlGo = (url) => {
+      window.location.href = url;
+    };
+  </script> -->
+</html>

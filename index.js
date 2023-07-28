@@ -24,6 +24,9 @@ app.get("/", (req, res) => {
 const productsRouter = require("./routes/products");
 app.use("/products", productsRouter);
 
+const shopRouter = require("./routes/shop");
+app.use("/shop", shopRouter);
+
 app.use((req, res) => {
   res.status(404).render("404");
 });

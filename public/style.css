@@ -4,6 +4,9 @@
   padding: 0;
 }
 
+body {
+  background-color: #424046;
+}
 a {
   text-decoration: none;
   color: inherit;
@@ -23,9 +26,11 @@ a {
   width: 100px;
   padding: 2px;
 }
+/* category display */
 
 /* Products display */
-.product-card {
+.product-card,
+.category-card {
   background-color: white;
   border: 4px solid #ccc;
   border-radius: 5px;
@@ -38,39 +43,46 @@ a {
   justify-content: space-between;
 }
 
-.product-card:hover {
+.product-card:hover,
+.category-card:hover {
   border: 4px solid #d1552e;
 }
 
-.product-title {
+.product-title,
+.category-title {
   height: 10px;
   /* margin: 10px 0 20px; */
 }
 
-.product-thumbnail {
+.product-thumbnail,
+.category-thumbnail {
   /* margin: 40px 0 0 0; */
   height: 500px;
   width: 100%;
 }
 
-.product-thumbnail img {
+.product-thumbnail img,
+.category-thumbnail img {
   object-fit: cover;
   max-height: 600px;
   width: 100%;
 }
 
-.product-thumbnail img:hover {
+.product-thumbnail img:hover,
+.category-thumbnail img:hover {
   border: solid black 2px;
 }
 
-.product-info {
+.product-info,
+.category-info {
   height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   /* padding: 10px; */
 }
-.product-description {
+.product-description,
+.category-description {
   text-align: justify;
   text-justify: distribute;
   font-size: 17px;
@@ -83,6 +95,16 @@ a {
   font-weight: bold;
 }
 
+.buy-button {
+  background-color: rgb(97, 187, 97);
+  color: white;
+  border: green solid 1px;
+}
+
+.buy-button:hover {
+  background-color: rgb(76, 155, 76);
+}
+
 .delete-button {
   background-color: red;
   color: white;
@@ -92,7 +114,8 @@ a {
   background-color: rgb(158, 0, 0);
 }
 
-.products-content {
+.products-content,
+.category-content {
   background-color: #424046;
   min-height: 100vh;
   max-width: 1280px;
@@ -129,7 +152,6 @@ a {
   height: 20vh;
   display: flex;
   justify-content: center;
-  background-color: #424046;
 }
 
 .product-form {
@@ -139,7 +161,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* background-color: dimgrey; */
+  background-color: #424046;
   color: white;
 }
 
@@ -206,6 +228,7 @@ a {
 
 /* nav partial */
 .nav-wrapper {
+  /* background-color: #2d2d2d; */
   display: flex;
   justify-content: center;
   width: 100%;
@@ -214,6 +237,9 @@ a {
 
 .nav {
   /* border: #d1552e solid 1px; */
+  background-color: #424046;
+  color: white;
+  padding: 0 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -37,6 +37,23 @@ const getProductById = (id) => {
   });
 };
 
+const getProductByCategoryId = (id) => {
+  if (DEBUG) console.log("products.dal.getProductByCategoryId()");
+  return new Promise((resolve, reject) => {
+    const sql =
+      "SELECT product_id, product_name, product_description, product_price, product_image, category_id FROM product WHERE category_id = $1;";
+    dal.query(sql, [id], (err, result) => {
+      if (err) {
+        //logging here
+        if (DEBUG) console.log("Error executing query: " + err);
+        reject(err);
+      } else {
+        resolve(result.rows);
+      }
+    });
+  });
+};
+
 const addProduct = (
   product_name,
   product_description,
@@ -151,4 +168,5 @@ module.exports = {
   deleteProduct,
   putProduct,
   patchProduct,
+  getProductByCategoryId,
 };
