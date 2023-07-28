@@ -5,29 +5,32 @@
     include('./partials/addProduct.ejs') %>
     <div class="category-content">
       <% if (categories.length > 0) { %> <% categories.forEach(category => { %>
-      >
-      <div class="category-card">
-        <div class="category-title">
-          <h2>Title: <%= category.category_name %></h2>
-          Category ID: <%= category.category_id %>
-        </div>
+      <a href="/shop/<%= category.category_id %>"
+        ><div class="category-card">
+          <div class="category-title">
+            <h2>Title: <%= category.category_name %></h2>
+            Category ID: <%= category.category_id %>
+          </div>
 
-        <div class="category-thumbnail">
-          <img src="<%= category.category_image %>" alt="category_image" />
-        </div>
-        <div class="category-info">
-          <p class="category-description">
-            <b>Description:</b><br />
-            <%= category.category_description %>
-          </p>
-        </div>
-      </div>
+          <div class="category-thumbnail">
+            <img src="<%= category.category_image %>" alt="category_image" />
+          </div>
+          <div class="category-info">
+            <p class="category-description">
+              <b>Description:</b><br />
+              <%= category.category_description %>
+            </p>
+          </div>
+        </div></a
+      >
+
+      <% }); %> <% } %>
     </div>
-    <% }); %> <% } %> <%- include('./partials/foot.ejs') %>
+    <%- include('./partials/foot.ejs') %>
   </body>
-  <script>
+  <!-- <script>
     const urlGo = (url) => {
       window.location.href = url;
     };
-  </script>
+  </script> -->
 </html>
