@@ -32,7 +32,7 @@ a {
   padding: 10px;
   margin: 10px;
   width: 950px;
-  height: 1050px;
+  height: 1100px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -84,10 +84,7 @@ a {
 }
 
 .delete-button {
-  margin: 10px 0 10px 0;
-  padding: 2px;
   background-color: red;
-  width: 100px;
   color: white;
 }
 
@@ -105,6 +102,27 @@ a {
   flex-wrap: wrap;
 }
 
+.product-options-wrapper {
+  /* border: pink solid 1px; */
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.product-options {
+  /* border: red solid 1px; */
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.product-options button {
+  width: 100px;
+  margin-left: 4px;
+  padding: 2px;
+}
+
 /* addProducts partial */
 .product-form-wrapper {
   width: 100%;
@@ -115,7 +133,7 @@ a {
 }
 
 .product-form {
-  border: orange solid 1px;
+  /* border: orange solid 1px; */
   padding: 10px 0;
   width: 925px;
   display: flex;
@@ -166,9 +184,16 @@ a {
 .product-form-control {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 }
+
+.product-form-selection {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+
 .add-product {
   width: 100px;
   border: green solid 1px;

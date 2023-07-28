@@ -23,16 +23,50 @@
             <b>Price: $</b><%= product.product_price %>
           </p>
           <p><b>Category ID:</b> <%= product.category_id %></p>
-          <a href="/products/<%= product.product_id%>/delete"
-            ><button class="delete-button">DELETE</button></a
-          >
-          <a href="/products/<%= product.product_id%>/replace"
-            ><button class="put-button">REPLACE</button></a
-          >
+          <div class="product-options-wrapper">
+            <!-- <div class="product-options">
+              <a href="/products/<%= product.product_id%>/delete"
+                ><button class="delete-button">DELETE</button></a
+              >
+              <a href="/products/<%= product.product_id%>/replace"
+                ><button class="put-button">REPLACE</button></a
+              >
+              <a href="/prodcuts/<%= product.product_id%>/edit">
+                <button class="patch-button">EDIT</button></a
+              >
+            </div> -->
+            <div class="product-options">
+              <button
+                class="delete-button"
+                onclick="urlGo('/products/<%= product.product_id%>/delete')"
+              >
+                DELETE
+              </button>
+
+              <button
+                class="put-button"
+                onclick="urlGo('/products/<%= product.product_id%>/replace')"
+              >
+                REPLACE
+              </button>
+
+              <button
+                class="patch-button"
+                onclick="urlGo('/products/<%= product.product_id%>/edit')"
+              >
+                EDIT
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <% }); %> <% } %>
     </div>
     <%- include('./partials/foot.ejs') %>
   </body>
+  <script>
+    const urlGo = (url) => {
+      window.location.href = url;
+    };
+  </script>
 </html>
