@@ -1,41 +1,36 @@
 <div class="product-form-wrapper">
-  <div class="product-form">
-    <form action="/products" method="POST">
-      <br /><label>Add Product:</label><br />
-      <label
-        >product_name:
-        <input type="text" id="product_name" name="product_name" required />
-      </label>
-      <label
-        >product_description:
-        <input
-          type="text"
-          id="product_description"
-          name="product_description"
-          required
-        />
-      </label>
-      <label
-        >product_price:
-        <input
-          type="number"
-          step="0.01"
-          id="product_price"
-          name="product_price"
-          value="0.01"
-          required
-        />
-      </label>
-      <label
-        >product_image:
-        <input type="text" id="product_image" name="product_image" />
-      </label>
-      <label
-        >category_id:
-        <input type="number" id="category_id" name="category_id" required />
-      </label>
-      <br />
-      <button type="submit">POST</button>
-    </form>
-  </div>
+  <form action="/products" method="POST" class="product-form">
+    <div class="product-form-top">
+      <label>product_name:</label>
+      <input type="text" class="product-name" name="product_name" required />
+
+      <label>product_price:</label>
+      <input
+        type="number"
+        step="0.01"
+        id="product_price"
+        name="product_price"
+        required
+      />
+    </div>
+    <div class="product-form-top">
+      <label>product_image:</label>
+      <input type="text" class="product-image" name="product_image" />
+
+      <label>category_id:</label>
+      <input type="number" id="category-id" name="category_id" required />
+    </div>
+    <div class="product-form-bottom">
+      <label for="product-description">product_description:</label><br />
+      <textarea
+        type="text"
+        class="product_description"
+        name="product_description"
+        required
+      ></textarea>
+    </div>
+    <div class="product-form-control">
+      <button type="submit" class="add-product">Add Product</button>
+    </div>
+  </form>
 </div>

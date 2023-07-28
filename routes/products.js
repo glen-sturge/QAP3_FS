@@ -6,6 +6,7 @@ const {
   getProductById,
   addProduct,
   deleteProduct,
+  putProduct,
 } = require("../services/products.dal");
 
 const lg = new Logger();
@@ -91,6 +92,12 @@ router.get("/:id/delete", async (req, res) => {
   res.render("productDelete.ejs", { aProduct });
 });
 
+router.get("/:id/replace", async (req, res) => {
+  if (DEBUG) console.log("product.REPLACE : " + req.params.id);
+  let aProduct = await getProductById(req.params.id);
+  res.render("putProduct.ejs", { product: aProduct[0] });
+});
+
 router.post("/", async (req, res) => {
   if (DEBUG) console.log("products.POST");
   try {
@@ -117,6 +124,33 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  if (DEBUG) console.log("product.PUT: product_id=" + req.params.id);
+  try {
+    const {
+      product_name,
+      product_description,
+      product_price,
+      product_image,
+      category_id,
+    } = req.body;
+    await putProduct(
+      req.params.id,
+      product_name,
+      product_description,
+      product_price,
+      product_image,
+      category_id
+    );
+    res.redirect("/products/");
+  } catch (error) {
+    if (DEBUG)
+      console.log(
+        `There was an error replacing product data, product_id=${req.params.id}:\n${error} `
+      );
+  }
+});
+
 router.delete("/:id", async (req, res) => {
   if (DEBUG) console.log("products.DELETE: product_id=" + req.params.id);
   try {
@@ -125,7 +159,7 @@ router.delete("/:id", async (req, res) => {
   } catch (err) {
     if (DEBUG)
       console.log(
-        `There was an error deleting record, product_id=${req.params.id}: ${err}`
+        `There was an error deleting record, product_id=${req.params.id}:\n${err}`
       );
     //logging here
     res.render("503");

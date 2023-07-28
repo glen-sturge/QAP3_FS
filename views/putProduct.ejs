@@ -1,0 +1,18 @@
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="products-content">
+      <div class="product-delete-card">
+        <%-include('./partials/productCard.ejs', { product: product })%>
+        <div class="product-delete-confirm">
+          <%- include('./partials/replaceProduct.ejs'), { product: product } %>
+          <a href="javascript:history.back()"
+            ><button class="cancel-button">CANCEL</button></a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+  <%- include('./partials/foot.ejs') %>
+</html>
