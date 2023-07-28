@@ -1,0 +1,25 @@
+<div class="id-search-wrapper">
+  <form action="/products" method="GET" class="id-search" id="product-form">
+    <label
+      >product_id:<input
+        type="number"
+        class="product-id"
+        name="product_id"
+        value="1"
+        required
+    /></label>
+
+    <button type="submit">Search</button>
+  </form>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    let id = document.querySelector(".product-id");
+    let form = document.getElementById("product-form");
+
+    id.addEventListener("input", () => {
+      let input = id.value;
+      form.action = `/products/${input}`;
+    });
+  });
+</script>
