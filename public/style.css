@@ -282,7 +282,12 @@ nav ul {
 }
 
 .footer {
+  display: flex;
+  justify-content: center;
+  color: white;
   width: 1000px;
+  height: 100%;
+  align-items: center;
 }
 
 /* id search */
@@ -307,4 +312,36 @@ nav ul {
 
 .id-search button {
   width: 100px;
+}
+
+/* 404, 503 */
+.lost-content,
+.error-content {
+  color: white;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-content-wrapper,
+.index-content-wrapper {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-content,
+.index-content {
+  background-color: white;
+  border: 4px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  width: 1000px;
+}
+
+.about-content p {
+  margin: 20px 0;
 }

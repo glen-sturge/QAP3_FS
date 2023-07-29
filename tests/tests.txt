@@ -1,0 +1,12 @@
+1. As a FakeStore customer I can see a webpage showing the categories of shopping.
+2. As a FakeStore customer I can see a webpage showing all the products within a category.
+3. As a FakeStore buisiness partner I can fetch all the products in the product table and display them to the page.
+4. As a FakeStore buisiness partner I can fetch all the products in the product table from a REST API. The records will be returned as json data.
+5. As a FakeStore staff member I can see a web page that will allow me to add a new item to the product table of the database.
+6. As a FakeStore staff member I can see a web page that will allow me to replace an item in the product table of the database.
+7. As a FakeStore staff member I can see a web page that will allow me to update an item in the product table of the database.
+8. As a FakeStore staff member I can see a web page that will allow me to delete an item in the product table of the database.
+9. As a FakeStore staff member I can connect through an API that allows me to add a new item to the product table of the database.
+10. As a FakeStore staff member I can connect through an API that allows me to replace an item in the product table of the database.
+11. As a FakeStore staff member I can connect through an API that allows me to update an item in the product table of the database.
+12. As a FakeStore staff member I can connect through an API that allows me to delete an item in the product table of the database.

@@ -22,6 +22,10 @@ app.get("/", (req, res) => {
   res.render("index.ejs", { name: "username here" }); //be cool to have a login...
 });
 
+app.get("/about", (req, res) => {
+  res.render("about.ejs");
+});
+
 const productsRouter = require("./routes/products");
 app.use("/products", productsRouter);
 
